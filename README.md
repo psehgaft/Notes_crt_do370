@@ -120,6 +120,25 @@ oc get deployment/image-registry -n openshift-image-registry -o jsonpath='{.spec
 oc new-project services-registry
 ```
 
+# Monitoring
 
+Verify the disk space in the emptyDir volume mounted in /prometheus.
 
+```sh
+oc exec -n openshift-monitoring statefulset/prometheus-k8s -c prometheus -- df -h /prometheus
 
+oc exec -n openshift-monitoring statefulset/alertmanager-main -c alertmanager -- df -h /alertmanager
+```
+
+Create Config Map
+
+```sh
+oc create -n openshift-monitoring configmap cluster-monitoring-config --from-file config.yaml=metrics-storage.yml
+```
+
+Verify that the prometheus-k8s stateful set in the openshift-monitoring namespace mounts a block device to the /prometheus mount point
+
+```sh
+oc exec -n openshift-monitoring statefulset/prometheus-k8s -c prometheus -- df -h /prometheus
+oc exec -n openshift-monitoring statefulset/alertmanager-main -c alertmanager -- df -h /alertmanager
+```
