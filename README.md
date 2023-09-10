@@ -23,6 +23,14 @@ oc adm new-project openshift-local-storage
 oc project openshift-local-storage
 ```
 
+Create the openshift-storage.
+
+```sh
+oc adm new-project openshift-storage
+
+oc project openshift-storage
+```
+
 Label namespaces for monitoring
 
 ```sh
