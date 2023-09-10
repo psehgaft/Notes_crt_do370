@@ -17,19 +17,23 @@ Label namespaces for monitoring
 oc label namespace/openshift-storage openshift.io/cluster-monitoring=
 ```
 
-ODF Validating
+ODF Validating 
 
 ```sh
 
 oc get localvolumediscoveryresults -n openshift-local-storage
 
-oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-storage
-watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-storage
-oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
+oc get all -n openshift-local-storage
 
 oc get localvolumeset -n openshift-local-storage
-oc get storagecluster -n openshift-storage
+oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-storage
+oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
 
+
+oc get all -n openshift-storage
+
+watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-storage
+oc get storagecluster -n openshift-storage
 oc get storageclasses -o custom-columns='NAME:metadata.name,PROVISIONER:provisioner'
 
 
