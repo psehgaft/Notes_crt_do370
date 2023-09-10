@@ -66,6 +66,11 @@ oc get storageclasses -o custom-columns='NAME:metadata.name,PROVISIONER:provisio
 
 ```
 
+ODF Validating openshift-storage.noobaa.io storage class
+
+```sh
+oc get storageclasses -o name
+```
 
 # Registry
 
