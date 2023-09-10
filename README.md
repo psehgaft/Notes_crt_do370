@@ -75,3 +75,15 @@ oc create secret generic image-registry-private-configuration-user --from-litera
 oc create secret generic image-registry-private-configuration-user --from-literal=KEY1=value1 --from-literal=KEY2=value2 --namespace openshift-image-registry
 
 ```
+
+Getting image registry storage type
+
+```sh
+oc get deployment/image-registry -n openshift-image-registry -o jsonpath='{.spec.template.spec.containers[*].env}' | jq -r '.[] | select(.name == "REGISTRY_STORAGE") | [.name , .value] | @tsv'
+```
+
+Retrieving image registry S3 storage parameters
+
+```sh
+oc get deployment/image-registry -n openshift-image-registry -o jsonpath='{.spec.template.spec.containers[*].env}' | jq -r '.[] | select(.name | startswith("REGISTRY_STORAGE_S3")) | [.name , .value] | @tsv'
+```
