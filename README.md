@@ -21,6 +21,14 @@ Label namespaces for monitoring
 oc label namespace/openshift-storage openshift.io/cluster-monitoring=
 ```
 
+List the disks available in one of the worker nodes.
+ - The disk /dev/vda has the operating system installed.
+ - The disks /dev/vdb and /dev/vdc are available.
+
+```sh
+oc debug node/worker01 -- lsblk --paths --nodeps
+```
+
 ODF Validating 
 
 ```sh
