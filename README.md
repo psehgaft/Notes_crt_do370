@@ -64,8 +64,14 @@ watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-s
 oc get storagecluster -n openshift-storage
 oc get storageclasses -o custom-columns='NAME:metadata.name,PROVISIONER:provisioner'
 
-
 ```
 
 
+# Registry
 
+```sh
+oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_S3_ACCESSKEY=myaccesskey --from-literal=REGISTRY_STORAGE_S3_SECRETKEY=mysecretkey --namespace openshift-image-registry
+
+oc create secret generic image-registry-private-configuration-user --from-literal=KEY1=value1 --from-literal=KEY2=value2 --namespace openshift-image-registry
+
+```
