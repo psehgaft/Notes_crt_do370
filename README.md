@@ -15,6 +15,14 @@ oc get nodes -l node-role.kubernetes.io/worker=
 oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/openshift-storage=
 ```
 
+Create the openshift-local-storage.
+
+```sh
+oc adm new-project openshift-local-storage
+
+oc project openshift-local-storage
+```
+
 Label namespaces for monitoring
 
 ```sh
