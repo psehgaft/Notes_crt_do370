@@ -74,6 +74,13 @@ oc get storageclasses -o name
 
 # Registry
 
+Create 
+
+
+```sh
+oc apply -f obc
+```
+
 ```sh
 oc get secrets -l app=noobaa -n openshift-image-registry
 
