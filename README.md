@@ -11,6 +11,12 @@ Label nodes for OCP Storage (ODF)
 oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/openshift-storage=
 ```
 
+Label namespaces for monitoring
+
+```sh
+oc label namespace/openshift-storage openshift.io/cluster-monitoring=
+```
+
 ODF Validating
 
 ```sh
