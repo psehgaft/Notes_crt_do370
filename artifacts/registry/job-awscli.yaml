@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: awscli
+  namespace: openshift-image-registry
+  labels:
+    app: awscli
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        app: awscli
+    spec:
+      containers:
+      - name: awscli
+        image: quay.io/redhattraining/aws-cli:2.2.5
+        command:
+        - bash
+        - -vc
+        - 'aws s3 ls s3://${BUCKET_NAME} --endpoint-url=https://${BUCKET_HOST} --recursive --summarize --human-readable'
+        env:
+        - name: AWS_CA_BUNDLE
+          value: /run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+        envFrom:
+        - configMapRef:
+            name: noobaa-registry
+        - secretRef:
+            name: noobaa-registry
+        resources: {}
+      restartPolicy: Never
