@@ -15,7 +15,8 @@ ODF Validating
 
 ```sh
 oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-storage
-
 watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-storage
+oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
+
 ```
 
