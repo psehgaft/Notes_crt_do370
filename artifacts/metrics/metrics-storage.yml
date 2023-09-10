@@ -1,0 +1,15 @@
+prometheusK8s:
+  retention: CHANGE_ME
+  volumeClaimTemplate:
+    spec:
+      storageClassName: CHANGE_ME
+      resources:
+        requests:
+          storage: CHANGE_ME
+alertmanagerMain:
+  volumeClaimTemplate:
+    spec:
+      storageClassName: CHANGE_ME
+      resources:
+        requests:
+          storage: CHANGE_ME
