@@ -20,6 +20,10 @@ oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-stora
 
 oc get localvolumeset -n openshift-local-storage
 oc get storagecluster -n openshift-storage
+
+oc get storageclasses -o custom-columns='NAME:metadata.name,PROVISIONER:provisioner'
+
+
 ```
 
 
