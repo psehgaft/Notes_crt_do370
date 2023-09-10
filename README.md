@@ -14,6 +14,9 @@ oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/open
 ODF Validating
 
 ```sh
+
+oc get localvolumediscoveryresults -n openshift-local-storage
+
 oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-storage
 watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-storage
 oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
