@@ -75,10 +75,33 @@ oc get storageclasses -o name
 # Registry
 
 ```sh
+oc get secrets -l app=noobaa -n openshift-image-registry
+
+oc extract secret/noobaa-registry -n openshift-image-registry
+```
+
+```sh
 oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_S3_ACCESSKEY=myaccesskey --from-literal=REGISTRY_STORAGE_S3_SECRETKEY=mysecretkey --namespace openshift-image-registry
 
 oc create secret generic image-registry-private-configuration-user --from-literal=KEY1=value1 --from-literal=KEY2=value2 --namespace openshift-image-registry
+```
 
+Identify the bucket name associated with the noobaa-registry OBC
+
+```sh
+oc get -n openshift-image-registry objectbucketclaim/noobaa-registry -o jsonpath='{.spec.bucketName}{"\n"}'
+```
+
+Identify the URL for the s3 route in the openshift-storage namespace
+
+```sh
+oc get route/s3 -n openshift-storage -o jsonpath='{.spec.host}{"\n"}'
+```
+
+Apply a patch to the image registry configuration.
+
+```sh
+oc patch configs.imageregistry/cluster --type=merge --patch-file=imageregistry-patch.yaml
 ```
 
 Getting image registry storage type
@@ -92,3 +115,9 @@ Retrieving image registry S3 storage parameters
 ```sh
 oc get deployment/image-registry -n openshift-image-registry -o jsonpath='{.spec.template.spec.containers[*].env}' | jq -r '.[] | select(.name | startswith("REGISTRY_STORAGE_S3")) | [.name , .value] | @tsv'
 ```
+
+```sh
+oc new-project services-registry
+```
+
+
