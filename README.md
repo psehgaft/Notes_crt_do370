@@ -5,7 +5,12 @@ oc annotate storagecluster ocs-storagecluster uninstall.ocs.openshift.io/cleanup
 oc annotate storagecluster ocs-storagecluster uninstall.ocs.openshift.io/mode="forced" --overwrite
 ```
 
-Label nodes
+Label nodes for OCP Storage (ODF)
 
 ```sh
 oc label nodes -l node-role.kubernetes.io/worker=  cluster.ocs.openshift.io/openshift-storage=
+```
+
+
+
+
