@@ -18,5 +18,9 @@ oc get operatorgroups,subscriptions,clusterserviceversions -n openshift-local-st
 watch oc get operatorgroups,subscriptions,clusterserviceversions  -n openshift-storage
 oc get localvolumediscovery,localvolumediscoveryresults -n openshift-local-storage
 
+oc get localvolumeset -n openshift-local-storage
+oc get storagecluster -n openshift-storage
 ```
+
+
 
