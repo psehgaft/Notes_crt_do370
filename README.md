@@ -74,23 +74,24 @@ oc get storageclasses -o name
 
 # Registry
 
-Create 
+Create Object Bucket Claim
 
 
 ```sh
-oc apply -f obc
+oc apply -f ObjectBucketClaim-registry.yml
+
+oc get objectbucketclaim/noobaa-review -n openshift-image-registry
 ```
+Create a new generic secret containing for OBC
 
 ```sh
 oc get secrets -l app=noobaa -n openshift-image-registry
 
 oc extract secret/noobaa-registry -n openshift-image-registry
-```
 
-```sh
 oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_S3_ACCESSKEY=myaccesskey --from-literal=REGISTRY_STORAGE_S3_SECRETKEY=mysecretkey --namespace openshift-image-registry
 
-oc create secret generic image-registry-private-configuration-user --from-literal=KEY1=value1 --from-literal=KEY2=value2 --namespace openshift-image-registry
+# oc create secret generic image-registry-private-configuration-user --from-literal=KEY1=value1 --from-literal=KEY2=value2 --namespace openshift-image-registry
 ```
 
 Identify the bucket name associated with the noobaa-registry OBC
