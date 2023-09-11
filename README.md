@@ -160,3 +160,6 @@ ceph -c /var/lib/rook/openshift-storage/openshift-storage.config health
 
 ```
 
+
+oc adm must-gather --image=registry.redhat.io/ocs4/ocs-must-gather-rhel8:v4.7 --dest-dir=must-gather
+
