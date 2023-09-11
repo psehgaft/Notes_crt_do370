@@ -150,3 +150,13 @@ Verify that the prometheus-k8s stateful set in the openshift-monitoring namespac
 oc exec -n openshift-monitoring statefulset/prometheus-k8s -c prometheus -- df -h /prometheus
 oc exec -n openshift-monitoring statefulset/alertmanager-main -c alertmanager -- df -h /alertmanager
 ```
+
+# Health check Tools
+
+```sh
+og get pods
+oc exec -ti pod/rook-ceph-operator-.. -n openshift-storage -c rook-ceph-operator -- /bin/bash
+ceph -c /var/lib/rook/openshift-storage/openshift-storage.config health
+
+```
+
