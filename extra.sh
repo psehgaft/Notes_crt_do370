@@ -1,3 +1,11 @@
+# Install ODF
+
+oc label nodes -l node-role.kubernetes.io/worker= cluster.ocs.openshift.io/openshift-storage=
+# Install Local storage Operator 
+# - Create Local Volume Discovery.
+# - Create Local Volume Set
+# Install OpenShift Container Storage Operator
+# - Create StorageCluster
 
 # Exernal registry
 
