@@ -57,3 +57,31 @@ oc create -n openshift-monitoring configmap cluster-monitoring-config --from-fil
 
 command: 
 - 'dnf -qy install rsync && rsync -avH /var/application /backup'
+
+# Users
+
+oc policy add-role-to-user role-name username -n project
+
+# Limit & Quota
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: pvc-count
+spec:
+  hard:
+    persistentvolumeclaims: "3"
+
+apiVersion: "v1"
+kind: "LimitRange"
+metadata:
+  name: "pvc-range"
+spec:
+  limits:
+    - type: "PersistentVolumeClaim"
+      min:
+        storage: "1Gi"
+      max:
+        storage: "10Gi"
+
+
