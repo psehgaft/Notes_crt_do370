@@ -1,4 +1,4 @@
-# Notes_crt_do370
+# Notes_crt_do370 -
 
 ```sh
 oc annotate storagecluster ocs-storagecluster uninstall.ocs.openshift.io/cleanup-policy="retain" --overwrite
